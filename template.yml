@@ -1,0 +1,139 @@
+AWSTemplateFormatVersion: 2010-09-09
+Description: >-
+  face-recognition-cloud
+
+Transform:
+- AWS::Serverless-2016-10-31
+
+Resources:
+  # create API Gateway
+  FaceRecognitionAPI:
+    Type: AWS::Serverless::HttpApi
+    Properties:
+      StageName: "dev"      
+      CorsConfiguration:
+        AllowOrigins:
+          - "*"
+        AllowHeaders:
+          - "*"
+        AllowMethods:
+          - POST
+        MaxAge: 600
+        AllowCredentials: False
+  
+  # create lambda
+  FaceRecognitionIndexFaces:
+    Type: AWS::Serverless::Function
+    Properties:
+      # CodeUri: src/handlers
+      Runtime: nodejs12.x
+      Timeout: 15
+      MemorySize: 128
+      Handler: src/handlers/indexFaces.functionHandler
+      Policies:
+      - Version: '2012-10-17' # Policy Document
+        Statement:
+        - Action: "*"
+          Effect: Allow
+          Resource: "*"
+      Events:
+        HttpApiEvent:
+          Type: HttpApi
+          Properties: 
+            ApiId: !Ref FaceRecognitionAPI
+            Method: POST
+            Path: /indexfaces
+  
+  # create lambda
+  FaceRecognitionSearchFace:
+    Type: AWS::Serverless::Function
+    Properties:
+      # CodeUri: src/handlers
+      Runtime: nodejs12.x
+      Timeout: 15
+      MemorySize: 128
+      Handler: src/handlers/searchFaceByImage.functionHandler
+      Policies:
+      - Version: '2012-10-17' # Policy Document
+        Statement:
+        - Action: "*"
+          Effect: Allow
+          Resource: "*"
+      Events:
+        HttpApiEvent:
+          Type: HttpApi
+          Properties: 
+            ApiId: !Ref FaceRecognitionAPI
+            Method: POST
+            Path: /searchface
+  
+  # create lambda
+  FaceRecognitionDeleteCollection:
+    Type: AWS::Serverless::Function
+    Properties:
+      # CodeUri: src/handlers
+      Runtime: nodejs12.x
+      Timeout: 15
+      MemorySize: 128
+      Handler: src/handlers/deleteCollection.functionHandler
+      Policies:
+      - Version: '2012-10-17' # Policy Document
+        Statement:
+        - Action: "*"
+          Effect: Allow
+          Resource: "*"
+      Events:
+        HttpApiEvent:
+          Type: HttpApi
+          Properties: 
+            ApiId: !Ref FaceRecognitionAPI
+            Method: POST
+            Path: /deletecollection
+  
+  # create lambda
+  ProtectiveEquipmentDetection:
+    Type: AWS::Serverless::Function
+    Properties:
+      # CodeUri: src/handlers
+      Runtime: nodejs12.x
+      Timeout: 15
+      MemorySize: 128
+      Handler: src/handlers/searchProtectiveCover.functionHandler
+      Policies:
+      - Version: '2012-10-17' # Policy Document
+        Statement:
+        - Action: "*"
+          Effect: Allow
+          Resource: "*"
+      Events:
+        HttpApiEvent:
+          Type: HttpApi
+          Properties: 
+            ApiId: !Ref FaceRecognitionAPI
+            Method: POST
+            Path: /maskdetection
+
+  # create lambda
+  FaceAndMaskRekognition:
+    Type: AWS::Serverless::Function
+    Properties:
+      # CodeUri: src/handlers
+      Runtime: nodejs12.x
+      Timeout: 15
+      MemorySize: 128
+      Handler: src/handlers/faceAndMaskRekognition.functionHandler
+      Policies:
+      - Version: '2012-10-17' # Policy Document
+        Statement:
+        - Action: "*"
+          Effect: Allow
+          Resource: "*"
+      Events:
+        HttpApiEvent:
+          Type: HttpApi
+          Properties: 
+            ApiId: !Ref FaceRecognitionAPI
+            Method: POST
+            Path: /faceandmaskrecognition
+  
+
