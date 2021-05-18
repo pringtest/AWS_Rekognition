@@ -23,8 +23,8 @@ This repo uses open source projects to work properly:
 
 ## Installation
 
-requires latest [Node.js](https://nodejs.org/) to run.
-requires latest [SAM CLI](https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/serverless-sam-cli-install.html) to run.
+- Requires latest [Node.js](https://nodejs.org/) to run.
+- Requires latest [SAM CLI](https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/serverless-sam-cli-install.html) to run.
 
 Install the dependencies and devDependencies.
 ```sh
