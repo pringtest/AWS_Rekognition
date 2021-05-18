@@ -24,7 +24,7 @@ This repo uses open source projects to work properly:
 
 ## Installation
 
-- Requires latest [Node.js][node.j] to run.
+- Requires latest [Node.js][node.js] to run.
 - Requires latest [SAM CLI][SAM CLI] to run.
 - Requires latest [AWS CLI][AWS CLI] to run.
 
