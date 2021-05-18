@@ -19,12 +19,14 @@
 ## Tech
 This repo uses open source projects to work properly:
 - [node.js] - used for the backend
+- [AWS CLI] - used for enviroment
 - [SAM CLI] - used for build and deployment
 
 ## Installation
 
-- Requires latest [Node.js](https://nodejs.org/) to run.
-- Requires latest [SAM CLI](https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/serverless-sam-cli-install.html) to run.
+- Requires latest [Node.js][node.j] to run.
+- Requires latest [SAM CLI][SAM CLI] to run.
+- Requires latest [AWS CLI][AWS CLI] to run.
 
 Install the dependencies and devDependencies.
 ```sh
@@ -48,4 +50,4 @@ MIT
    [awssdk]: <https://docs.aws.amazon.com/AWSJavaScriptSDK/latest/AWS/Rekognition.html>
    [node.js]: <http://nodejs.org>
    [SAM CLI]: <https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/serverless-sam-cli-install.html>
-   
+   [AWS CLI]: <https://docs.aws.amazon.com/cli/latest/userguide/install-cliv2.html>
